@@ -50,14 +50,11 @@ def checktick(timer_function):
     for i in range(M):
         t1 = timer_function()
         t2 = timer_function()
-        while (t2 - t1) <= 0:  # Ensure measurable granularity
+        while (t2 - t1) <= 0:
             t2 = timer_function()
         timesfound[i] = t1
     minDelta = np.diff(timesfound).min()
     return minDelta
-
-
-# decorator to time
 
 
 #@profile
