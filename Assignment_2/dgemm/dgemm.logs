@@ -1,0 +1,68 @@
+Testing DGEMM for N=50...
+Manual DGEMM:
+dgemm_manual: Avg 0.057507s, Std 0.008484, Min 0.048182s, Max 0.068458s
+
+NumPy DGEMM:
+dgemm_numpy: Avg 0.000051s, Std 0.000079, Min 0.000010s, Max 0.000192s
+
+NumPy DGEMM matmul:
+dgemm_numpy: Avg 0.000015s, Std 0.000007, Min 0.000011s, Max 0.000027s
+
+
+
+Testing DGEMM for N=100...
+Manual DGEMM:
+dgemm_manual: Avg 0.439604s, Std 0.057053, Min 0.386173s, Max 0.522536s
+
+NumPy DGEMM:
+dgemm_numpy: Avg 0.000238s, Std 0.000094, Min 0.000184s, Max 0.000405s
+
+NumPy DGEMM matmul:
+dgemm_numpy: Avg 0.000153s, Std 0.000051, Min 0.000094s, Max 0.000216s
+
+
+
+Testing DGEMM for N=200...
+Manual DGEMM:
+dgemm_manual: Avg 3.435774s, Std 0.114240, Min 3.294127s, Max 3.593469s
+
+NumPy DGEMM:
+dgemm_numpy: Avg 0.000732s, Std 0.000175, Min 0.000633s, Max 0.001044s
+
+NumPy DGEMM matmul:
+dgemm_numpy: Avg 0.000663s, Std 0.000060, Min 0.000559s, Max 0.000710s
+
+
+Number of FLOPS: 2 (one addition, one multiplication)
+
+Number of FLOPS per N = 2 x Npow3
+
+Ie. for 200, 2x200pow3 = 16,000,000 FLOPS
+
+
+Computing FLOPS/s 
+FLOPS/s = Total FLOPS / Exec time (seconds)
+
+Manual DGEMM (N=200) -> Avg Time = 3.601251s
+4.44*10pow6 FLOPS/s 
+
+
+
+NumPy DGEMM (N=200) -> Avg Time = 0.000672s
+2.38*10pow10 FLOPS/s 
+
+My processor: Intel i7-1255U (base clock frequency = 1.70GHz = 1.7*10pow9 cycles/s)
+10 cores (2 P-cores, 8 E-cores)
+AVX-optimised FMA support (Floating-point Multiplay-Add -> 2 FLOP per cycle)
+
+Theoretical peak with 1.70 GHz and 2 FLOP per cycle would be:
+
+Manual DGEMM 
+4.44 x 10pow6 FLOPS/s 
+
+4.44x10pow6 / 3.4 x 10pow10 x 100 ~~ 0.013%
+
+NumPy DGEMM 
+
+70%
+
