@@ -1,0 +1,24 @@
+# Ignore all virtual environments inside subfolders
+**/venv/
+**/cython_env/
+**/env/
+
+
+# Ignore wildfire simulation output files
+wildfire_sim*
+
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore log files
+*.log
+
+# Ignore Dask worker logs & temporary data
+dask-worker-space/
