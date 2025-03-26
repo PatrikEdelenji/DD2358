@@ -22,7 +22,7 @@ def save_to_hdf5(filename, dataset_name, data):
         f.create_dataset(dataset_name, data=data)
 
 if __name__ == "__main__":
-    grid_sizes = [10,20,40,100]
+    grid_sizes = [200,400,600,800,1000]
     times = []
     
     for N in grid_sizes:

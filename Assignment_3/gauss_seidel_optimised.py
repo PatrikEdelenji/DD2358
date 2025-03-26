@@ -18,7 +18,7 @@ def gauss_seidel(f, iterations=1000):
 
 
 if __name__ == "__main__":
-    grid_sizes = [10,20,50,100]
+    grid_sizes = [20, 40, 60, 80, 100, 200, 400, 600, 800, 1000]
     times = []
     
     for N in grid_sizes:
