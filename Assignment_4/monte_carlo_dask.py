@@ -12,7 +12,7 @@ GRID_SIZE = 800  # 800x800 forest grid
 FIRE_SPREAD_PROB = 0.3  # Probability that fire spreads to a neighboring tree
 BURN_TIME = 3  # Time before a tree turns into ash
 DAYS = 60  # Maximum simulation time
-NUM_SIMULATIONS = 8  # Number of parallel simulations
+NUM_SIMULATIONS = 12  # Number of parallel simulations
 
 # State definitions
 EMPTY = 0    # No tree
@@ -22,6 +22,7 @@ ASH = 3      # Burned tree
 
 def initialize_forest():
     """Creates a forest grid with all trees and ignites one random tree."""
+    
     forest = np.ones((GRID_SIZE, GRID_SIZE), dtype=int)  # All trees
     burn_time = np.zeros((GRID_SIZE, GRID_SIZE), dtype=int)  # Tracks how long a tree burns
     
@@ -79,7 +80,7 @@ def simulate_wildfire(sim_id):
     return fire_spread, snapshots
 
 def run_parallel_simulations():
-    client = Client(n_workers=8, threads_per_worker=2)
+    client = Client(n_workers=4, threads_per_worker= 2)
     print(client.dashboard_link)
     simulations = [simulate_wildfire(i) for i in range(NUM_SIMULATIONS)]
     results = dask.compute(*simulations)
@@ -91,6 +92,8 @@ def run_parallel_simulations():
     max_days = max(len(res) for res in fire_spread_data)
     aggregated_results = da.zeros(max_days)
     counts = da.zeros(max_days)
+    #     aggregated_results = da.zeros(max_days, chunks=(10,))
+    # counts = da.zeros(max_days, chunks=(10,))
     
     for res in fire_spread_data:
         for i, val in enumerate(res):
@@ -123,6 +126,7 @@ if __name__ == "__main__":
     # plt.show()
     
     # # Visualize stored snapshots in main process
+    # plt.ion()  # Turn on interactive mode
     # for sim_id, snapshots in enumerate(all_snapshots):
     #     for day, forest in enumerate(snapshots):
     #         plt.figure(figsize=(6, 6))
@@ -130,3 +134,5 @@ if __name__ == "__main__":
     #         plt.title(f"Wildfire Simulation {sim_id} - Day {day*5}")
     #         plt.colorbar(label="State: 0=Empty, 1=Tree, 2=Burning, 3=Ash")
     #         plt.show()
+    # plt.ioff()  # Turn off interactive mode
+    # plt.show()  # Show all figures at once

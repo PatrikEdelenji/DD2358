@@ -5,7 +5,7 @@
 
 
 # Ignore wildfire simulation output files
-wildfire_sim*
+# wildfire_sim*
 
 
 # Ignore compiled Python files

@@ -109,6 +109,7 @@ def run_parallel_simulations():
     return averaged_results
 
 if __name__ == "__main__":
+    print(NUM_SIMULATIONS)
     # Run parallel wildfire simulations
     start_time = time.time()
     fire_spread_over_time = run_parallel_simulations()
@@ -117,10 +118,10 @@ if __name__ == "__main__":
     # Took 13.3897 seconds
     
     # Plot results
-    # plt.figure(figsize=(8, 5))
-    # plt.plot(range(len(fire_spread_over_time)), fire_spread_over_time, label="Average Burning Trees")
-    # plt.xlabel("Days")
-    # plt.ylabel("Number of Burning Trees")
-    # plt.title("Average Wildfire Spread Over Time (Parallel Simulations)")
-    # plt.legend()
-    # plt.show()
+    plt.figure(figsize=(8, 5))
+    plt.plot(range(len(fire_spread_over_time)), fire_spread_over_time, label="Average Burning Trees")
+    plt.xlabel("Days")
+    plt.ylabel("Number of Burning Trees")
+    plt.title("Average Wildfire Spread Over Time (Parallel Simulations)")
+    plt.legend()
+    plt.show()
